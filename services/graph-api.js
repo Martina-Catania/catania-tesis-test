@@ -5,6 +5,12 @@ const config = require("./config");
 
 const api = new FacebookAdsApi(config.accessToken);
 
+/**
+ * Normalizes the recipient's phone numbers to prevent crashes when sending messages to arg nombers.
+ * Meta does not consider this a bug and does not plan to fix it.
+ * Also happens to mx and br numbers.
+ * Fun!
+ */
 function normalizeRecipientPhoneNumber(phoneNumber) {
   if (!phoneNumber) {
     return phoneNumber;
@@ -56,6 +62,20 @@ module.exports = class GraphApi {
       console.error('Error making API call:', error);
       throw error;
     }
+  }
+
+  static async sendTextMessage(messageId, senderPhoneNumberId, recipientPhoneNumber, text) {
+    const requestBody = {
+      messaging_product: "whatsapp",
+      recipient_type: "individual",
+      to: recipientPhoneNumber,
+      type: "text",
+      text: {
+        body: text
+      }
+    };
+
+    return this.#makeApiCall(messageId, senderPhoneNumberId, requestBody);
   }
 
   static async messageWithInteractiveReply(messageId, senderPhoneNumberId, recipientPhoneNumber, messageText, replyCTAs) {
