@@ -1,4 +1,3 @@
-import constants from './constants.js';
 import GraphApi from './graph-api.js';
 import Message from './message.js';
 import Status from './status.js';
@@ -36,7 +35,7 @@ export default class Conversation {
           message.id,
           senderPhoneNumberId,
           message.senderPhoneNumber,
-          constants.APP_DEFAULT_MESSAGE
+          "Sorry, I can only process text and image messages for now."
         );
         break;
     }
@@ -57,7 +56,7 @@ export default class Conversation {
         undefined,
         senderPhoneNumberId,
         status.recipientPhoneNumber,
-        constants.APP_TRY_ANOTHER_MESSAGE
+        "Sorry, I can only process text and image messages for now."
       );
     }
   }
