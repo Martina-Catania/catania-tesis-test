@@ -1,6 +1,4 @@
-"use strict";
-
-module.exports = class Message {
+export default class Message {
   constructor(rawMessage) {
     this.id = rawMessage.id;
     this.senderPhoneNumber = rawMessage.from;

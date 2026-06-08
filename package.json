@@ -2,6 +2,7 @@
   "name": "tesis-catania-test",
   "version": "1.0.0",
   "description": "testing whatsapp business api",
+  "type": "module",
   "scripts": {
     "start": "node app.js"
   },

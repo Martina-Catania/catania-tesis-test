@@ -1,6 +1,4 @@
-"use strict";
-
-module.exports = class Status {
+export default class Status {
   constructor(rawStatus) {
     // The message ID that this status update refers to
     this.messageId = rawStatus.id;

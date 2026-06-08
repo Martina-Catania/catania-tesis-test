@@ -1,7 +1,6 @@
-"use strict";
+import * as redis from 'redis';
 
-const redis = require('redis');
-const config = require('./config');
+import config from './config.js';
 
 const client = redis.createClient({
   socket: {
@@ -14,9 +13,9 @@ client.on('error', (err) => {
   console.error('Redis Client Error', err);
 });
 
-client.connect();
+void client.connect();
 
-module.exports = class Cache {
+export default class Cache {
     static async insert(key) {
         /**
          * As of when this was written, the redis client doesn't support

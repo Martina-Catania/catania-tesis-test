@@ -1,7 +1,4 @@
-"use strict";
-
-// Use dotenv to read .env vars into Node
-require("dotenv").config();
+import 'dotenv/config';
 
 // Required environment variables
 const ENV_VARS = [
@@ -12,7 +9,7 @@ const ENV_VARS = [
   "REDIS_PORT"
 ];
 
-module.exports = Object.freeze({
+const config = Object.freeze({
   // Application information
   appSecret: process.env.APP_SECRET,
   accessToken: process.env.ACCESS_TOKEN,
@@ -31,3 +28,5 @@ module.exports = Object.freeze({
     });
   }
 });
+
+export default config;

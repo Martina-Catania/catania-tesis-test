@@ -1,7 +1,8 @@
-"use strict";
+import * as facebookNodejsBusinessSdk from 'facebook-nodejs-business-sdk';
 
-const { FacebookAdsApi } = require('facebook-nodejs-business-sdk');
-const config = require("./config");
+import config from './config.js';
+
+const { FacebookAdsApi } = facebookNodejsBusinessSdk;
 
 const api = new FacebookAdsApi(config.accessToken);
 
@@ -24,7 +25,7 @@ function normalizeRecipientPhoneNumber(phoneNumber) {
   return digitsOnly;
 }
 
-module.exports = class GraphApi {
+export default class GraphApi {
   static async #makeApiCall(messageId, senderPhoneNumberId, requestBody) {
     try {
       // Mark as read and send typing indicator
@@ -33,7 +34,7 @@ module.exports = class GraphApi {
           messaging_product: "whatsapp",
           status: "read",
           message_id: messageId,
-          "typing_indicator": {
+          typing_indicator: {
             "type": "text"
           }
         };

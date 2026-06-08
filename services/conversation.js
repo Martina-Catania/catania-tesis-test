@@ -1,12 +1,10 @@
-"use strict";
+import constants from './constants.js';
+import GraphApi from './graph-api.js';
+import Message from './message.js';
+import Status from './status.js';
+import Cache from './redis.js';
 
-const constants = require("./constants");
-const GraphApi = require('./graph-api');
-const Message = require('./message');
-const Status = require('./status');
-const Cache = require('./redis');
-
-module.exports = class Conversation {
+export default class Conversation {
   constructor(phoneNumberId) {
     this.phoneNumberId = phoneNumberId;
   }

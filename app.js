@@ -1,14 +1,11 @@
-"use strict";
+import crypto from 'node:crypto';
+import bodyParser from 'body-parser';
+import express from 'express';
 
-const crypto = require('crypto');
+import config from './services/config.js';
+import Conversation from './services/conversation.js';
 
-const { urlencoded, json } = require('body-parser');
-require('dotenv').config();
-const express = require('express');
-
-const config = require('./services/config');
-const Conversation = require('./services/conversation');
-const Message = require('./services/message');
+const { urlencoded, json } = bodyParser;
 const app = express();
 
 // Parse application/x-www-form-urlencoded
@@ -101,6 +98,6 @@ function verifyRequestSignature(req, res, buf) {
 }
 
 
-var listener = app.listen(config.port, () => {
+const listener = app.listen(config.port, () => {
   console.log(`The app is listening on port ${listener.address().port}`);
 });
