@@ -8,6 +8,6 @@ To run:
 2- sudo sysctl vm.overcommit_memory=1
 3- redis-server --daemonize yes
 4- ngrok http 8080
-5- node app.js
+5- npm run start
 6- check if app is running
 7- add ngrok url to whatsapp business portal config
