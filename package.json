@@ -4,7 +4,10 @@
   "description": "testing whatsapp business api",
   "type": "module",
   "scripts": {
-    "start": "node app.js"
+    "build": "tsc",
+    "start": "node dist/app.js",
+    "dev": "tsx watch app.ts",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@prisma/client": "^5.8.0",
@@ -16,8 +19,14 @@
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
+    "@types/body-parser": "^1.19.6",
+    "@types/express": "^5.0.6",
+    "@types/facebook-nodejs-business-sdk": "^24.0.0",
+    "@types/node": "^20.11.0",
     "eslint": "^10.4.1",
     "globals": "^17.6.0",
-    "prisma": "^5.8.0"
+    "prisma": "^5.8.0",
+    "tsx": "^4.7.0",
+    "typescript": "^5.3.3"
   }
 }
