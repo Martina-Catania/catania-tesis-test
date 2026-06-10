@@ -2,8 +2,8 @@ import crypto from 'node:crypto';
 import bodyParser from 'body-parser';
 import express, { Request, Response } from 'express';
 
-import config from './services/config.js';
-import Conversation from './services/conversation.js';
+import config from './src/config';
+import Conversation from './src/services/whatsapp/client';
 
 const { urlencoded, json } = bodyParser;
 const app = express();

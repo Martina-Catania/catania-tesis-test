@@ -1,7 +1,7 @@
 import GraphApi from './graph-api.js';
-import Message, { RawMessage } from './message.js';
-import Status, { RawStatus } from './status.js';
-import Cache from './redis.js';
+import Message, { RawMessage } from './message';
+import Status, { RawStatus } from './status';
+import Cache from '../../lib/redis';
 
 export default class Conversation {
   static async handleMessage(
