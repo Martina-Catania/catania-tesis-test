@@ -1,5 +1,5 @@
 import * as redis from 'redis';
-import config from './config.js';
+import { config } from './config.js';
 
 const client = redis.createClient({
   socket: {
@@ -14,7 +14,7 @@ client.on('error', (err: Error) => {
 
 void client.connect();
 
-export default class Cache {
+export class Cache {
   /**
    * Inserts a key with a short TTL.
    *

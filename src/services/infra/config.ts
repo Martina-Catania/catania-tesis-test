@@ -6,6 +6,7 @@ const ENV_VARS = [
   "VERIFY_TOKEN",
   "REDIS_HOST",
   "REDIS_PORT",
+  "GEMINI_API_KEY",
 ] as const;
 
 interface Config {
@@ -15,10 +16,11 @@ interface Config {
   port: number;
   redisHost: string;
   redisPort: number;
+  geminiApiKey: string;
   checkEnvVariables: () => void;
 }
 
-const config: Config = Object.freeze({
+export const config: Config = Object.freeze({
   appSecret:   process.env.APP_SECRET,
   accessToken: process.env.ACCESS_TOKEN,
   verifyToken: process.env.VERIFY_TOKEN,
@@ -26,6 +28,8 @@ const config: Config = Object.freeze({
   port:      Number(process.env.PORT) || 8080,
   redisHost: process.env.REDIS_HOST   || "localhost",
   redisPort: Number(process.env.REDIS_PORT) || 6379,
+
+  geminiApiKey: process.env.GEMINI_API_KEY || "",
 
   checkEnvVariables() {
     for (const key of ENV_VARS) {
@@ -35,5 +39,3 @@ const config: Config = Object.freeze({
     }
   },
 });
-
-export default config;
