@@ -230,4 +230,17 @@ export default class GraphApi {
 
     return this.#makeApiCall(messageId, senderPhoneNumberId, requestBody);
   }
+
+  static async getMediaUrl(mediaId: string): Promise<string> {
+    const response = await api.call('GET', [mediaId], {}) as { url: string };
+    return response.url;
+  }
+
+  static async downloadMedia(mediaUrl: string): Promise<Buffer> {
+    const response = await fetch(mediaUrl, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    if (!response.ok) throw new Error(`Failed to download media: ${response.statusText}`);
+    return Buffer.from(await response.arrayBuffer());
+  }
 }
