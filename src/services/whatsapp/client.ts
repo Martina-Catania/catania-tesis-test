@@ -1,9 +1,9 @@
-import GraphApi from './graph-api.js';
+import GraphApi from './graph-api';
 import Message, { RawMessage } from './message';
 import Status, { RawStatus } from './status';
 import { Cache } from '../infra/index';
 import { parseDeliveryMessage, formatDeliveryReply } from '../textParser/index';
-import { extractDataFromImage } from '../ai/gemini-api.js';
+import { extractDataFromImage } from '../ai/gemini-api';
 
 export default class Conversation {
 	static async handleMessage(

@@ -1,4 +1,4 @@
-//barrel export for utils
-export * from './format-reply.js';
-export * from './parse-text.js';
-export * from './types.js';
+//barrel export for text parser services
+export * from './format-reply';
+export * from './parse-text';
+export * from './types';
