@@ -1,5 +1,5 @@
 import * as facebookNodejsBusinessSdk from 'facebook-nodejs-business-sdk';
-import {config} from '../../utils';
+import { config } from '../../utils';
 
 const { FacebookAdsApi } = facebookNodejsBusinessSdk;
 const token = config.accessToken as string;
@@ -45,7 +45,7 @@ function normalizeRecipientPhoneNumber(phoneNumber: string | undefined): string 
 
 // ─── API class ───────────────────────────────────────────────────────────────
 
-export default class GraphApi {
+export class GraphApi {
   static async #makeApiCall(
     messageId: string | undefined,
     senderPhoneNumberId: string,

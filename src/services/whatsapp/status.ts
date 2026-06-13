@@ -7,7 +7,7 @@ export interface RawStatus {
 
 export type DeliveryStatus = 'sent' | 'delivered' | 'read' | 'failed' | string;
 
-export default class Status {
+export class Status {
   /** The message ID this status update refers to */
   messageId: string;
 

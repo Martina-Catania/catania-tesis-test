@@ -10,7 +10,7 @@ export interface RawMessage {
 
 export type MessageType = 'text' | 'image' | 'unknown' | string;
 
-export default class Message {
+export class Message {
   id: string;
   senderPhoneNumber: string;
   type: MessageType;
