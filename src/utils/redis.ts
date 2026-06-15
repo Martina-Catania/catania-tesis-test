@@ -1,5 +1,5 @@
 import * as redis from 'redis';
-import { config } from '../../utils';
+import { config } from '.';
 
 const client = redis.createClient({
   socket: {
