@@ -10,7 +10,7 @@ const genai = new GoogleGenAI({
 export async function extractDataFromImage(
   imageBuffer: Buffer,
   mimeType: "image/jpeg" | "image/png" | "image/webp" = "image/jpeg",
-  prompt = "Extract all relevant information from this image. Be concise and structured.",
+  prompt = "Identifica el cliente, la dirección y la cantidad de paquetes entregados (un numero en un circulo) en este remito. Contesta con el formato: 'Cliente: [nombre del cliente]\n Dirección: [dirección del cliente]\n Bultos: [cantidad de paquetes]'. No agregues texto adicional, solo responde con el formato indicado.",
 ): Promise<string> {
   const base64Image = imageBuffer.toString("base64");
 

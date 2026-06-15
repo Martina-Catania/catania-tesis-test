@@ -48,7 +48,7 @@ export class Conversation {
 						message.id,
 						senderPhoneNumberId,
 						message.senderPhoneNumber,
-						`Here's what I found in your image:\n\n${extractedData}`,
+						`${extractedData}`,
 					);
 				} catch (error) {
 					console.error('Error processing image:', error);
