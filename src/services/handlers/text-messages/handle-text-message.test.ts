@@ -16,11 +16,4 @@ describe('handleTextMessage', () => {
         expect(response).toMatch(/^\*([^\n*]+)\*\n(?:\s+(\d+)x\s+)?(\d+)[×x](\d+)[×x](\d+)\n\s+_Total packages: (\d+)_·?$/m);
         expect(response).toMatch(/^\*Total across all clients: (\d+) packages\*$/m);
     });
-
-    it('should ignore day of the week in delivery data', () => {
-        const message = 'Lunes\nFundacion universidad\n2x10x20x30\nPaesi\n5x15x25';
-        const response = handleTextMessage(message);
-        expect(response).toMatch(/^\*([^\n*]+)\*\n(?:\s+(\d+)x\s+)?(\d+)[×x](\d+)[×x](\d+)\n\s+_Total packages: (\d+)_·?$/m);
-        expect(response).toMatch(/^\*Total across all clients: (\d+) packages\*$/m);
-    });
 });

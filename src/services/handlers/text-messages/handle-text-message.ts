@@ -24,10 +24,6 @@ const isDeliveryData = (text: string): boolean => {
 
 const handleTextMessage = (message: string): string => {
     if (isDeliveryData(message)) {
-        // Check if the text contains a day of the week, if so, drop it before parsing
-        if (containsWeekday(message)) {
-            message = message.replace(/\b(Lunes|Martes|Miercoles|Jueves|Viernes|Sabado|Domingo)\b/gi, '').trim();
-        }
         const deliveryData = parseDeliveryMessage(message);
         const reply = formatDeliveryReply(deliveryData);
         return reply ;
