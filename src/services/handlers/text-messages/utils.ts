@@ -1,6 +1,6 @@
 /** Returns true if a token is purely digits-and-x (e.g. "27x8x8") */
 const isMeasurement = (token: string): boolean => {
-    return /^[\dx]+$/i.test(token) && token.includes('x');
+    return /^(\d+x){2,3}\d+$/.test(token);
 };
 
 const isClientName = (text: string): boolean => {
@@ -11,9 +11,11 @@ const isClientName = (text: string): boolean => {
 }
 
 const containsWeekday = (text: string): boolean => {
+    // 
+    const normalize = (s: string) => s.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
     // Check if the text contains a day of the week
     const date = ['lunes', 'martes', 'miercoles', 'jueves', 'viernes', 'sabado', 'domingo'];
-    return date.some(day => text.includes(day));
+    return date.some(day => normalize(text).includes(day));
 }
 
 export { isMeasurement, isClientName, containsWeekday as containsWeekday };

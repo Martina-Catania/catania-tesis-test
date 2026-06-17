@@ -1,18 +1,16 @@
-export interface ParsedPackage {
-  amount: number;
-  width: number;
-  height: number;
-  depth: number;
+export interface BultoParseado {
+  cant: number;
+  vol: number; //m^3
   raw: string;
 }
 
-export interface PackageError {
+export interface BultoError {
   raw: string;
   reason: string;
 }
 
-export interface DeliveryClient {
+export interface Cliente {
   name: string;
-  packages: ParsedPackage[];
-  errors: PackageError[];
+  bultos: BultoParseado[];
+  err: BultoError[];
 }

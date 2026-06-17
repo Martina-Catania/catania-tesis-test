@@ -1,52 +1,40 @@
-/**
- * Formats the parsed delivery data into a WhatsApp-friendly text reply.
- * Uses *bold* and _italic_ markdown supported by WhatsApp.
- */
-
-import { DeliveryClient } from "./types";
+import { Cliente } from "./types";
 
 /**
  * Formats the parsed delivery data into a WhatsApp-friendly text reply.
  * Uses *bold* and _italic_ markdown supported by WhatsApp.
  */
 
-export function formatDeliveryReply(clients: DeliveryClient[]): string {
-  if (clients.length === 0) {
-    return "No delivery data found in message.";
+export function formatDeliveryReply(clientes: Cliente[]): string {
+  if (clientes.length === 0) {
+    return "No se encontraron datos de entrega en el mensaje.";
   }
 
   const lines: string[] = [];
 
-  for (const client of clients) {
-    const totalPackages = client.packages.reduce((sum, p) => sum + p.amount, 0);
-
+  for (const client of clientes) {
+    const bultosTotal = client.bultos.reduce((sum, p) => sum + p.cant, 0);
     lines.push(`*${client.name}*`);
-
-    if (client.packages.length === 0 && client.errors.length === 0) {
-      lines.push('  (no packages)');
+    if (client.bultos.length === 0 && client.err.length === 0) {
+      lines.push('(no hay bultos)');
     }
-
-    for (const pkg of client.packages) {
-      const qtyLabel = pkg.amount > 1 ? `${pkg.amount}x ` : '';
-      lines.push(`  ${qtyLabel}${pkg.width}x${pkg.height}x${pkg.depth}`);
+    for (const bulto of client.bultos) {
+      lines.push(`  ${bulto.cant}x ${bulto.vol}`);
     }
-
-    if (client.errors.length > 0) {
-      lines.push(`  ⚠️ ${client.errors.length} malformed line(s):`);
-      for (const err of client.errors) {
+    if (client.err.length > 0) {
+      lines.push(`  ⚠️ ${client.err.length} línea(s) mal formada(s):`);
+      for (const err of client.err) {
         lines.push(`    "${err.raw}" — ${err.reason}`);
       }
     }
-
-    lines.push(`  _Total packages: ${totalPackages}_`);
+    lines.push(`  _Total: ${bultosTotal}_`);
     lines.push('');
   }
 
-  const grandTotal = clients.reduce(
-    (sum, c) => sum + c.packages.reduce((s, p) => s + p.amount, 0),
+  const total = clientes.reduce(
+    (sum, c) => sum + c.bultos.reduce((s, p) => s + p.cant, 0),
     0
   );
-  lines.push(`*Total across all clients: ${grandTotal} packages*`);
-
+  lines.push(`*Total: ${total} bultos*`);
   return lines.join('\n');
 }

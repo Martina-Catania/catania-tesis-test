@@ -1,5 +1,5 @@
 import { parseDeliveryMessage } from "./parse-delivery";
-import { DeliveryClient } from "./types";
+import { Cliente } from "./types";
 import { formatDeliveryReply } from "./format-reply";
 import { isMeasurement, isClientName, containsWeekday } from "./utils";
 
