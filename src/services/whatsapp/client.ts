@@ -2,7 +2,7 @@ import { GraphApi } from './graph-api';
 import { Message, RawMessage } from './message';
 import { Status, RawStatus } from './status';
 import { Cache } from '../../utils';
-import { parseDeliveryMessage, formatDeliveryReply } from '../textParser/index';
+import { handleTextMessage } from '../handlers/text-messages/index';
 import { extractDataFromImage } from '../ai/gemini-api';
 
 export class Conversation {
@@ -14,9 +14,7 @@ export class Conversation {
 
 		switch (message.type) {
 			case 'text': {
-				const deliveries = parseDeliveryMessage(message.text as string);
-				console.log('Parsed deliveries:', deliveries);
-				const replyText = `Message received: ${formatDeliveryReply(deliveries)}`;
+				const replyText = handleTextMessage(message.text as string);
 
 				await GraphApi.sendTextMessage(
 					message.id,

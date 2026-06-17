@@ -18,7 +18,7 @@ export function formatDeliveryReply(clients: DeliveryClient[]): string {
   const lines: string[] = [];
 
   for (const client of clients) {
-    const totalPackages = client.packages.reduce((sum, p) => sum + p.qty, 0);
+    const totalPackages = client.packages.reduce((sum, p) => sum + p.amount, 0);
 
     lines.push(`*${client.name}*`);
 
@@ -27,8 +27,8 @@ export function formatDeliveryReply(clients: DeliveryClient[]): string {
     }
 
     for (const pkg of client.packages) {
-      const qtyLabel = pkg.qty > 1 ? `${pkg.qty}x ` : '';
-      lines.push(`  ${qtyLabel}${pkg.width}×${pkg.height}×${pkg.depth}`);
+      const qtyLabel = pkg.amount > 1 ? `${pkg.amount}x ` : '';
+      lines.push(`  ${qtyLabel}${pkg.width}x${pkg.height}x${pkg.depth}`);
     }
 
     if (client.errors.length > 0) {
@@ -43,7 +43,7 @@ export function formatDeliveryReply(clients: DeliveryClient[]): string {
   }
 
   const grandTotal = clients.reduce(
-    (sum, c) => sum + c.packages.reduce((s, p) => s + p.qty, 0),
+    (sum, c) => sum + c.packages.reduce((s, p) => s + p.amount, 0),
     0
   );
   lines.push(`*Total across all clients: ${grandTotal} packages*`);

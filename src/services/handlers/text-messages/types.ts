@@ -1,5 +1,5 @@
 export interface ParsedPackage {
-  qty: number;
+  amount: number;
   width: number;
   height: number;
   depth: number;
